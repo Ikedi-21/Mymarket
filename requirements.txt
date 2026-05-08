@@ -7,3 +7,5 @@ cloudinary
 stripe
 django-cloudinary-storage
 Pillow
+gunicorn
+whitenoise
