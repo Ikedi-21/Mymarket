@@ -1,0 +1,7 @@
+*.py[cod]
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+.env
+test_image.jpg

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2>Seller Dashboard</h2>
+    <a href="{% url 'product_create' %}" class="btn">Add New Product</a>
+</div>
+
+<div class="product-grid">
+    {% for product in products %}
+    <div class="card">
+        {% if product.thumbnail %}
+        <img src="{{ product.thumbnail.url }}" alt="{{ product.title }}">
+        {% endif %}
+        <h3>{{ product.title }}</h3>
+        <p style="font-weight: 600; color: var(--primary-color);">${{ product.price }}</p>
+        <p style="opacity: 0.7; font-size: 14px; margin-bottom: 16px;">{{ product.get_category_display }}</p>
+        <div style="display: flex; gap: 8px; margin-top: auto;">
+            <a href="{% url 'product_update' product.pk %}" class="btn btn-secondary" style="flex: 1; text-align: center;">Edit</a>
+            <a href="{% url 'product_delete' product.pk %}" class="btn btn-secondary" style="flex: 1; text-align: center; background-color: #7f1d1d;">Delete</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No products yet. <a href="{% url 'product_create' %}">Create your first product!</a></p>
+    {% endfor %}
+</div>
+{% endblock %}

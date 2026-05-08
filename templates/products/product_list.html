@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2>Browse Products</h2>
+    <form method="get" style="display: flex; gap: 8px;">
+        <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}" style="width: 200px;">
+        <select name="category" style="width: 150px;">
+            <option value="">All Categories</option>
+            {% for cat_val, cat_name in categories %}
+            <option value="{{ cat_val }}" {% if request.GET.category == cat_val %}selected{% endif %}>{{ cat_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn">Filter</button>
+    </form>
+</div>
+
+<div class="product-grid">
+    {% for product in products %}
+    <div class="card">
+        {% if product.thumbnail %}
+        <img src="{{ product.thumbnail.url }}" alt="{{ product.title }}">
+        {% endif %}
+        <h3><a href="{% url 'product_detail' product.pk %}">{{ product.title }}</a></h3>
+        <p style="font-weight: 600; color: var(--primary-color); font-size: 18px;">${{ product.price }}</p>
+        <p style="opacity: 0.7; font-size: 14px;">{{ product.get_category_display }}</p>
+    </div>
+    {% empty %}
+    <p>No products found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

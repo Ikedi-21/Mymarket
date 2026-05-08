@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <h2 style="color: #10b981;">Payment Successful!</h2>
+    <p style="margin: 16px 0;">Thank you for your purchase of <strong>{{ order.product.title }}</strong>.</p>
+    <p style="opacity: 0.8; margin-bottom: 32px;">You can now access your digital products from your dashboard.</p>
+    <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="{% url 'my_purchases' %}" class="btn">View My Purchases</a>
+        <a href="{% url 'browse' %}" class="btn btn-secondary">Continue Browsing</a>
+    </div>
+</div>
+{% endblock %}

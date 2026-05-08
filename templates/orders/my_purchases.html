@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Purchases</h2>
+<div class="product-grid">
+    {% for order in orders %}
+    <div class="card">
+        {% if order.product.thumbnail %}
+        <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.title }}">
+        {% endif %}
+        <h3>{{ order.product.title }}</h3>
+        <p style="opacity: 0.7; font-size: 14px; margin-bottom: 16px;">Purchased on {{ order.created_at|date }}</p>
+        <a href="{% url 'secure_download' order.download.token %}" class="btn" style="text-align: center;">Download Files</a>
+    </div>
+    {% empty %}
+    <p>You haven't purchased anything yet. <a href="{% url 'browse' %}">Browse products</a></p>
+    {% endfor %}
+</div>
+{% endblock %}

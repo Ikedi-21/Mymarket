@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="text-align: center; padding: 100px 0;">
+    <h1 style="font-size: 64px; margin-bottom: 16px;">500</h1>
+    <h2>Server Error</h2>
+    <p style="opacity: 0.7; margin: 24px 0 32px;">Something went wrong on our end. We're working on it!</p>
+    <a href="{% url 'home' %}" class="btn">Go Back Home</a>
+</div>
+{% endblock %}
